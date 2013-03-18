@@ -1,5 +1,9 @@
-playdoh
-=======
+#Bisect in the cloud
+Bisect in the cloud is a project that allows the finding of regressions by bisecting revisions against builds and
+running specific tests. More details can be found on our [Wiki][wikimo]
+[wikimo]: https://wiki.mozilla.org/Auto-tools/Projects/Bisect_in_the_cloud
+
+### Based on playdoh framework
 
 Mozilla's Playdoh is a web application template based on [Django][django].
 
