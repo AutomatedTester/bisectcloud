@@ -2,13 +2,9 @@
 <html LANG="{{ LANG }}" dir="{{ DIR }}">
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <title>{% block page_title %}playdoh examples{% endblock %}</title>
+    <title>{% block page_title %}Bisect in the Cloud! {% endblock %}</title>
 
-    {% block site_css %}
-      {% compress css %}
-      <link href="{{ static('examples/css/main.css') }}" rel="stylesheet">
-      {% endcompress %}
-    {% endblock %}
+      <link href="{{ static('/css/main.css') }}" rel="stylesheet">
   </head>
   <body data-mobile-cookie="{{ settings.MOBILE_COOKIE }}">
     {% block content %}{% endblock %}
@@ -21,11 +17,11 @@
     </div>
 
     {% block site_js %}
-      {% compress js %}
+      {# compress js #}
       <script src="{{ static('examples/js/libs/jquery-1.4.4.min.js') }}"></script>
       <script src="{{ static('examples/js/libs/jquery.cookie.js') }}"></script>
       <script src="{{ static('examples/js/init.js') }}"></script>
-      {% endcompress %}
+      {# endcompress #}
     {% endblock %}
   </body>
 </html>
