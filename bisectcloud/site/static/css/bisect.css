@@ -1,0 +1,54 @@
+body {
+  font-family: "Trebuchet MS",Verdana,serif;
+  color: rgb(65, 65, 65);
+  background: rgb(248,248,255)
+}
+a {
+  color: rgb(119,136,153);
+  font-weight: bold;
+}
+a:hover {
+  font-weight: bold;
+  color: rgb(119,136,153);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "museo-slab",helvetica,arial,sans-serif;
+  letter-spacing: 0.2em;
+}
+.content {
+  float: left;
+  width: 100%;
+  text-align: justify;
+  padding: 0px 30px;
+  font-size: 12px;
+}
+.menu {
+  width: 159px;
+  float: right;
+  padding: 0 20px 0 20px;
+  border-left: #8C8484 1px solid;
+  font-size: 12px
+}
+#container {
+  margin: 0px auto;
+  width: 850px;
+}
+#main_content {
+  margin: 0px auto;
+  width: 100%;
+}
+#header {
+  width: 100%;
+}
+#sub_header {
+  text-align: right;
+  font-weight: bold;
+  font-size: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+#footer {
+  text-align: center;
+  font-size: 12px;
+  margin: 10px auto;
+}
