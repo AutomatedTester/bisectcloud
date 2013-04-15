@@ -6,11 +6,11 @@ python:
 
 # command to install dependencies
 install:
+  - "git submodule update --init --recursive"
   - "pip install -r requirements/compiled.txt --use-mirrors"
 
 before_script:
   - "mysql -e 'create database bisect;'"
-  - "git submodule update --init --recursive"
   - "mv bisectcloud/settings/local.py-dist bisectcloud/settings/local.py"
 
 script: "./manage.py test"
