@@ -9,7 +9,7 @@ from . import base
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'playdoh_app',
+        'NAME': 'bisectcloud',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '',
