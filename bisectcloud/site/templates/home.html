@@ -15,11 +15,10 @@
             <label for='hg-good'>Good Revision</label><input id='hg-good' type='text'>
             <label for='test'>Test</label><input id='test' type='text'>
             <label for='platform'>Platform</label>
-            <!-- //TODO(David) Populate options from Database-->
             <select id='platform'>
-                <option value='win32'>Win 32</option>
-                <option value='linux32'>Linux 32</option>
-                <option value='linux64'>Linux 64</option>
+            {% for plat in platforms %}
+                <option value='{{plat.name}}'>{{plat.name}}</option>
+            {% endfor %}
             </select>
             <label for='tree'>Tree</label>
             <select id='tree'>
