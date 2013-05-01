@@ -9,6 +9,7 @@ import commonware
 from funfactory.log import log_cef
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf
+from models import TreeInfo
 
 
 log = commonware.log.getLogger('playdoh')
@@ -18,6 +19,7 @@ log = commonware.log.getLogger('playdoh')
 def home(request, template=None):
     """Main example view."""
     data = {}  # You'd add data here that you're sending to the template.
+    data['treeinfo'] = TreeInfo.objects.all()
     log.debug("I'm alive!")
     return render(request, template, data)
 

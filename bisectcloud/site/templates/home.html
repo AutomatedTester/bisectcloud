@@ -21,6 +21,11 @@
                 <option value='linux32'>Linux 32</option>
                 <option value='linux64'>Linux 64</option>
             </select>
+            <label for='tree'>Tree</label>
+            <select id='tree'>
+            {% for tree in treeinfo %}
+                <option value='{{tree.name}}'>{{tree.name}}</option>
+            {% endfor %}
             <button id='submitbutton'>Submit</button>
         </form>
     </div>
