@@ -10,7 +10,6 @@ urlpatterns = patterns('',
     url(r'^browserid/', include('django_browserid.urls')),
     url(r'^logout/?$', 'django.contrib.auth.views.logout', {'next_page': '/'},
         name='examples.logout'),
-    url(r'^bleach/?$', views.bleach_test, name='examples.bleach'),
 )
 if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.
