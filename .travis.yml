@@ -12,6 +12,6 @@ install:
 before_script:
   - "mysql -e 'create database bisectcloud;'"
   - "mv bisectcloud/settings/local.py-dist bisectcloud/settings/local.py"
-  - "./manage.py syncdb --no-input"
+  - "./manage.py syncdb --noinput"
 
 script: "./manage.py test"
