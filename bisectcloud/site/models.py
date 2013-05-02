@@ -8,3 +8,12 @@ class TreeInfo(models.Model):
 class Platform(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
+
+class TaskMaster(models.Model):
+    id = models.AutoField(primary_key=True)
+    bad = models.CharField(max_length=50)
+    good = models.CharField(max_length=50)
+    test = models.CharField(max_length=255)
+    platform = models.ForeignKey(Platform)
+    tree = models.ForeignKey(TreeInfo)
+
