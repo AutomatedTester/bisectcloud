@@ -4,7 +4,7 @@ from bisectcloud.site.models import TaskMaster
 
 class EndPoints(test_utils.TestCase):
     fixtures = ['site.json']
-    add_job = "/en-US/add_job"
+    add_job = "/en-US/job/add"
 
     def test_we_can_post_payload_to_start_bisect_and_stored_in_database(self):
         data = {
