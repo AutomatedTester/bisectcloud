@@ -5,6 +5,7 @@ from bisectcloud.site.models import TaskMaster
 class EndPoints(test_utils.TestCase):
     fixtures = ['site.json']
     add_job = "/en-US/job/add"
+    cancel_job = "/en-US/job/cancel"
 
     def test_we_can_post_payload_to_start_bisect_and_stored_in_database(self):
         data = {
@@ -34,7 +35,7 @@ class EndPoints(test_utils.TestCase):
         }
         response = self.client.post(self.add_job, json.dumps(data), content_type='application/json')
         self.assertEqual("Invalid field value in plaform", response.content)
-    
+
     def test_should_receive_error_if_tree_not_in_database(self):
         data = {
             "bad": "123123123123",
@@ -45,3 +46,32 @@ class EndPoints(test_utils.TestCase):
         }
         response = self.client.post(self.add_job, json.dumps(data), content_type='application/json')
         self.assertEqual("Invalid field value in tree", response.content)
+
+    def test_should_be_able_to_cancel_bisects(self):
+        data = {
+            "id": 1
+        }
+        response = self.client.post(self.cancel_job, json.dumps(data), content_type='application/type')
+        self.assertEqual(200, response.status_code)
+        self.assertEqual("Task has been cancelled", response.content)
+
+    def test_should_error_gracefully_if_job_doesnt_exist(self):
+        data = {
+            "id": 100000000000
+        }
+        response = self.client.post(self.cancel_job, json.dumps(data), content_type='application/type')
+        self.assertEqual(200, response.status_code)
+        self.assertEqual("Task ID not found so can't be cancelled", response.content)
+
+    def test_should_error_if_user_sends_data_in_wrong_shape(self):
+        data = {
+            "willNeverExist": "what are you doing????"
+        }
+        response = self.client.post(self.cancel_job, json.dumps(data), content_type='application/type')
+        self.assertEqual(200, response.status_code)
+        self.assertEqual("Data not recognised", response.content)
+
+    def test_that_a_get_to_cancel_job_returns_error_message(self):
+        response = self.client.get(self.cancel_job)
+        self.assertEqual(200, response.status_code)
+        self.assertEqual("GET is not allowed to this endpoint", response.content)

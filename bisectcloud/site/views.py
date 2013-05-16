@@ -29,7 +29,7 @@ def add_job(request):
     if request.method == 'GET':
         return HttpResponse('GET is not allowed to this endpoint')
     doc = json.loads(request.body)
-    
+
     platforms_data = Platform.objects.all()
     platform = [plat.name for plat in platforms_data]
     if doc['platform'] not in platform:
@@ -51,3 +51,17 @@ def add_job(request):
         return HttpResponse('Task submitted')
     except Exception as e:
         return HttpResponse('There has been an error while saving. %s' % e)
+
+def cancel_job(request):
+    if request.method == 'GET':
+        return HttpResponse('GET is not allowed to this endpoint')
+    doc = json.loads(request.body)
+    if not doc.has_key('id'):
+        return HttpResponse('Data not recognised')
+    try:
+        task_item = TaskMaster.objects.get(id=doc['id'])
+        task_item.cancelled = True
+        return HttpResponse("Task has been cancelled")
+    except TaskMaster.DoesNotExist:
+        return HttpResponse("Task ID not found so can't be cancelled")
+
