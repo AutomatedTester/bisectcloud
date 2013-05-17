@@ -1,11 +1,13 @@
 import test_utils
 import json
 from bisectcloud.site.models import TaskMaster 
+from django.core import serializers
 
 class EndPoints(test_utils.TestCase):
     fixtures = ['site.json']
     add_job = "/en-US/job/add"
     cancel_job = "/en-US/job/cancel"
+    jobs = "/en-US/job"
 
     def test_we_can_post_payload_to_start_bisect_and_stored_in_database(self):
         data = {
@@ -75,3 +77,14 @@ class EndPoints(test_utils.TestCase):
         response = self.client.get(self.cancel_job)
         self.assertEqual(200, response.status_code)
         self.assertEqual("GET is not allowed to this endpoint", response.content)
+
+    def test_that_we_get_error_message_when_we_post_to_top_jobs(self):
+        response = self.client.post(self.jobs, json.dumps({}), content_type='application/json')
+        self.assertEqual(200, response.status_code)
+        self.assertEqual("POST is not allowed to this endpoint", response.content)
+
+    def test_that_we_get_data_back_from_get_to_top_jobs(self):
+        response = self.client.get(self.jobs)
+        self.assertEqual(200, response.status_code)
+        data = json.loads(response.content)
+        self.assertEqual(1, len(data['records']))

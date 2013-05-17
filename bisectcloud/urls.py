@@ -7,6 +7,7 @@ from .site import views
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='site.home'),
+    url(r'^job$', views.jobs, name='site.jobs'),
     url(r'^job/add', views.add_job, name='site.add_job'),
     url(r'^job/cancel', views.cancel_job, name='site.cancel_job'),
     url(r'^browserid/', include('django_browserid.urls')),

@@ -3,6 +3,7 @@
 import logging
 import json
 
+from django.core import serializers
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -64,4 +65,11 @@ def cancel_job(request):
         return HttpResponse("Task has been cancelled")
     except TaskMaster.DoesNotExist:
         return HttpResponse("Task ID not found so can't be cancelled")
+
+def jobs(request):
+    if request.method == 'POST':
+        return HttpResponse('POST is not allowed to this endpoint')
+    tasks = serializers.serialize('json', TaskMaster.objects.all()[:10])
+    return HttpResponse(json.dumps({"records":json.loads(tasks)}), content_type='application/json')
+
 
