@@ -7,7 +7,25 @@
 </div>
 <div id='container'>
     <div id='main_content'>
-        Current Jobs running.
+        <h1>Current Jobs running</h1>
+        <table>
+            <thead>
+                <td>id</td>
+                <td>bad</td>
+                <td>good</td>
+                <td>test</td>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr class="task">
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.bad }}</td>
+                    <td>{{ task.good }}</td>
+                    <td>{{ task.test }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     <div class='menu'>
         <form id='run-test' method='POST'>
@@ -26,6 +44,7 @@
                 <option value='{{tree.name}}'>{{tree.name}}</option>
             {% endfor %}
             </select>
+            {{ csrf() }}
             <button id='submitbutton'>Submit</button>
         </form>
     </div>
