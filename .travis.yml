@@ -7,7 +7,7 @@ python:
 # command to install dependencies
 install:
   - "git submodule update --init --recursive"
-  - "pip install -r requirements/compiled.txt --use-mirrors"
+  - "pip install -r requirements/dev.txt --use-mirrors"
 
 before_script:
   - "mysql -e 'create database bisectcloud;'"
