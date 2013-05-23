@@ -26,7 +26,34 @@
     <script>
     $(document).ready(function() {
       $("#submitbutton").click(function(){
-        $.post('job/add', $('#run-test').serialize(), function(data) {alert(data)});
+        $.post('job/add',
+                $('#run-test').serialize(),
+                function(data) {
+                    var result = JSON.parse(data);
+                    if (result.id) {
+                      var tr = document.createElement('tr');
+                      tr.classList.add('task')
+                      var td1 = document.createElement('td')
+                      var con1 = document.createTextNode(result.id);
+                      td1.appendChild(con1);
+                      var td2 = document.createElement('td')
+                      var con2 = document.createTextNode($('#hg-bad').val());
+                      td2.appendChild(con2);
+                      var td3 = document.createElement('td')
+                      var con3 = document.createTextNode($('#hg-good').val());
+                      td3.appendChild(con3);
+                      var td4 = document.createElement('td')
+                      var con4 = document.createTextNode($('#test').val());
+                      td4.appendChild(con4);
+
+                      tr.appendChild(td1);
+                      tr.appendChild(td2);
+                      tr.appendChild(td3);
+                      tr.appendChild(td4);
+                      var tbody = document.getElementsByTagName('tbody')[0];
+                      tbody.appendChild(tr);
+                    }
+                });
       });
     });
     </script>

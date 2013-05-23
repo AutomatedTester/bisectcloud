@@ -20,7 +20,7 @@ class EndPoints(test_utils.TestCase):
         }
         response = self.client.post(self.add_job, urllib.urlencode(data), content_type='application/json' )
         self.assertEqual(200, response.status_code)
-        self.assertEqual('Task submitted', response.content)
+        self.assertEqual('Task submitted', json.loads(response.content)['result'])
         self.assertEqual(1, len(TaskMaster.objects.filter(bad='123123123123')))
 
     def test_should_send_an_error_if_a_get_is_done_to_add_job(self):
@@ -37,7 +37,7 @@ class EndPoints(test_utils.TestCase):
             "tree": "mozilla-central"
         }
         response = self.client.post(self.add_job, urllib.urlencode(data), content_type='application/json')
-        self.assertEqual("Invalid field value in plaform", response.content)
+        self.assertEqual("Invalid field value in plaform", json.loads(response.content)['result'])
 
     def test_should_receive_error_if_tree_not_in_database(self):
         data = {
@@ -48,7 +48,7 @@ class EndPoints(test_utils.TestCase):
             "tree": "mozilla"
         }
         response = self.client.post(self.add_job, urllib.urlencode(data), content_type='application/json')
-        self.assertEqual("Invalid field value in tree", response.content)
+        self.assertEqual("Invalid field value in tree",json.loads(response.content)['result'] )
 
     def test_should_be_able_to_cancel_bisects(self):
         data = {

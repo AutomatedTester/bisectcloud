@@ -35,12 +35,12 @@ def add_job(request):
     platforms_data = Platform.objects.all()
     platform = [plat.name for plat in platforms_data]
     if doc['platform'] not in platform:
-        return HttpResponse('Invalid field value in plaform')
+        return HttpResponse(json.dumps({"result":'Invalid field value in plaform'}))
 
     trees_data = TreeInfo.objects.all()
     trees = [tree.name for tree in trees_data]
     if doc['tree'] not in trees:
-        return HttpResponse('Invalid field value in tree')
+        return HttpResponse(json.dumps({"result":'Invalid field value in tree'}))
 
     try:
         taskmaster = TaskMaster(bad=doc['hg-bad'],
@@ -50,9 +50,9 @@ def add_job(request):
                                            if doc['platform'] == platform.name][0],
                                 tree = [tree for tree in trees_data if doc['tree'] == tree.name][0])
         taskmaster.save()
-        return HttpResponse('Task submitted')
+        return HttpResponse(json.dumps({"id":taskmaster.id, "result":'Task submitted'}))
     except Exception as e:
-        return HttpResponse('There has been an error while saving. %s' % e)
+        return HttpResponse(json.dumps({"result":'There has been an error while saving. %s' % e}))
 
 def cancel_job(request):
     if request.method == 'GET':
