@@ -23,7 +23,7 @@ def home(request, template=None):
     data = {}  # You'd add data here that you're sending to the template.
     data['treeinfo'] = TreeInfo.objects.all()
     data['platforms'] = Platform.objects.all()
-    data['tasks'] = TaskMaster.objects.all()[:10]
+    data['tasks'] = TaskMaster.objects.all().order_by('-id')[:10]
     return render(request, template, data)
 
 def add_job(request):
