@@ -29,7 +29,8 @@ def home(request, template=None):
 def add_job(request):
     if request.method == 'GET':
         return HttpResponse('GET is not allowed to this endpoint')
-    doc = json.loads(request.body)
+    doc = request.POST.dict()
+    print doc
 
     platforms_data = Platform.objects.all()
     platform = [plat.name for plat in platforms_data]
@@ -42,8 +43,8 @@ def add_job(request):
         return HttpResponse('Invalid field value in tree')
 
     try:
-        taskmaster = TaskMaster(bad=doc['bad'],
-                                good = doc['good'],
+        taskmaster = TaskMaster(bad=doc['hg-bad'],
+                                good = doc['hg-good'],
                                 test = doc['test'],
                                 platform = [platform for platform in platforms_data \
                                            if doc['platform'] == platform.name][0],
@@ -56,7 +57,7 @@ def add_job(request):
 def cancel_job(request):
     if request.method == 'GET':
         return HttpResponse('GET is not allowed to this endpoint')
-    doc = json.loads(request.body)
+    doc = request.POST.dict()
     if not doc.has_key('id'):
         return HttpResponse('Data not recognised')
     try:

@@ -18,3 +18,12 @@ class TaskMaster(models.Model):
     platform = models.ForeignKey(Platform)
     tree = models.ForeignKey(TreeInfo)
 
+class Pushlog(models.Model):
+    id = models.AutoField(primary_key=True)
+    push_id = models.CharField(max_length=10)
+    branch_name = models.CharField(max_length=50)
+
+class Revisions(models.Model):
+    id = models.AutoField(primary_key=True)
+    revisions = models.CharField(max_length=50)
+    pushlog = models.ForeignKey(Pushlog)

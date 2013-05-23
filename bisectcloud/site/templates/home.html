@@ -28,24 +28,24 @@
         </table>
     </div>
     <div class='menu'>
-        <form id='run-test' method='POST'>
-            <label for='hg-bad'>Bad Revision</label><input id='hg-bad' type='text'>
-            <label for='hg-good'>Good Revision</label><input id='hg-good' type='text'>
-            <label for='test'>Test</label><input id='test' type='text'>
+        <form id='run-test'>
+            <label for='hg-bad'>Bad Revision</label><input id='hg-bad' name='hg-bad' type='text'>
+            <label for='hg-good'>Good Revision</label><input id='hg-good' name='hg-good' type='text'>
+            <label for='test'>Test</label><input id='test' name='test' type='text'>
             <label for='platform'>Platform</label>
-            <select id='platform'>
+            <select id='platform' name='platform'>
             {% for plat in platforms %}
                 <option value='{{plat.name}}'>{{plat.name}}</option>
             {% endfor %}
             </select>
             <label for='tree'>Tree</label>
-            <select id='tree'>
+            <select id='tree' name='tree'>
             {% for tree in treeinfo %}
                 <option value='{{tree.name}}'>{{tree.name}}</option>
             {% endfor %}
             </select>
             {{ csrf() }}
-            <button id='submitbutton'>Submit</button>
+            <button type='button' id='submitbutton'>Submit</button>
         </form>
     </div>
 </div>
@@ -56,5 +56,6 @@
 {% block site_js %}
     <script src="{{ static('js/libs/jquery-1.4.4.min.js') }}"></script>
     <script src="{{ static('js/libs/jquery.cookie.js') }}"></script>
+    <script src="{{ static('js/libs/jquery.serializeJSON.min.js') }}"></script>
     <script src="{{ static('js/init.js') }}"></script>
 {% endblock %}
