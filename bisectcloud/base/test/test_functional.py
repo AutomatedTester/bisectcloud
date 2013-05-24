@@ -20,3 +20,7 @@ class Home(BaseTestCase):
 
         wait = WebDriverWait(self.driver, 5)
         wait.until(lambda driver: len(driver.find_elements(By.CSS_SELECTOR, ".task")) == 2)
+
+        self.assertEqual('', bad.get_attribute('value'))
+        self.assertEqual('', good.get_attribute('value'))
+        self.assertEqual('', test.get_attribute('value'))
