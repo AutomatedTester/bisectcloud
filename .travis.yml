@@ -1,20 +1,25 @@
-language: python
-python:
-  - "2.6"
-  - "2.7"
-
-env:
+--- 
+before_script: 
+- sh -e /etc/init.d/xvfb start
+- mysql -e 'create database bisectcloud;'
+- mv bisectcloud/settings/local.py-dist bisectcloud/settings/local.py
+- ./manage.py syncdb --noinput
+env: 
+  global: 
   - DISPLAY=':99.0'
-
-# command to install dependencies
-install:
-  - "git submodule update --init --recursive"
-  - "pip install -r requirements/dev.txt --use-mirrors"
-
-before_script:
-  - "sh -e /etc/init.d/xvfb start"
-  - "mysql -e 'create database bisectcloud;'"
-  - "mv bisectcloud/settings/local.py-dist bisectcloud/settings/local.py"
-  - "./manage.py syncdb --noinput"
-
-script: "./manage.py test"
+  - secure: |-
+      B7du1/8zIz0HJcXOJfS2+LhnDwEDD9CLXlqCz9P/Htk+dsCf4pfxliYQ8ED/
+      V3CFeX2Rx/0BkvZBHTdKShWBB9TDtTuplSH8EYW4sSuD6xN3kVCQCvnkePnr
+      5prx06KN3JI04cXxb+7BQuvRqqQluhFxY8T+caAviz0BtH1o7Q4=
+  - secure: |-
+      RT6CU4wzrrHn3Bd5MUa1OxuZKJEUsHFAGp8Dnp3Sne+2OHu4pNDl1W8L1cWi
+      sFFQXOHjZgEEXJrh1pr66rl4RIxcG0ZWXtDvppeDDztlxEgGzWj5k9Cj98OJ
+      CQbYbGiPPKc2xAeXUTfRoJmLi3/Iit9pj4UPcwS6hBAlC/P5jDA=
+python: 
+- "2.6"
+- "2.7"
+script: ./manage.py test
+language: python
+install: 
+- git submodule update --init --recursive
+- pip install -r requirements/dev.txt --use-mirrors
