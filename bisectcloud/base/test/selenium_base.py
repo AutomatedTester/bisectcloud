@@ -9,20 +9,20 @@ class BaseTestCase(LiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         try:
-           os.environ['SAUCE_USERNAME']
-           desired_capabilities = webdriver.DesiredCapabilities.FIREFOX
-           desired_capabilities['version'] = os.environ['SAUCE_BROWSER_VERSION']
-           desired_capabilities['platform'] = os.environ['SAUCE_PLATFORM']
-           desired_capabilities['name'] = 'Bisect in the cloud'
+            os.environ['SAUCE_USERNAME']
+            desired_capabilities = webdriver.DesiredCapabilities.FIREFOX
+            desired_capabilities['version'] = os.environ['SAUCE_BROWSER_VERSION']
+            desired_capabilities['platform'] = os.environ['SAUCE_PLATFORM']
+            desired_capabilities['name'] = 'Bisect in the cloud'
 
-           cls.driver = webdriver.Remote(desired_capabilities=desired_capabilities,
+            cls.driver = webdriver.Remote(desired_capabilities=desired_capabilities,
                                           command_executor="http://%s:%s@ondemand.saucelabs.com:80/wd/hub" % \
                                           (os.environ['SAUCE_USERNAME'],
                                           os.environ['SAUCE_ACCESS_KEY'])
                                          )
         except Exception as e:
-           print e
-           cls.driver = webdriver.Firefox()
+            print ("This following error was encounterd: %s" % e)
+            cls.driver = webdriver.Firefox()
         super(BaseTestCase, cls).setUpClass()
 
     @classmethod
