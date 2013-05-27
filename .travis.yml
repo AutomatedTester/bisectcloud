@@ -15,6 +15,8 @@ env:
       RT6CU4wzrrHn3Bd5MUa1OxuZKJEUsHFAGp8Dnp3Sne+2OHu4pNDl1W8L1cWi
       sFFQXOHjZgEEXJrh1pr66rl4RIxcG0ZWXtDvppeDDztlxEgGzWj5k9Cj98OJ
       CQbYbGiPPKc2xAeXUTfRoJmLi3/Iit9pj4UPcwS6hBAlC/P5jDA=
+  matrix:
+  - SAUCE_PLATFORM='Windows 7' SAUCE_BROWSER_VERSION=21
 python: 
 - "2.6"
 - "2.7"
