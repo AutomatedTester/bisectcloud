@@ -11,7 +11,11 @@ class BaseTestCase(LiveServerTestCase):
         try:
             cls.username = os.environ['SAUCE_USERNAME']
             cls.key = os.environ['SAUCE_ACCESS_KEY']
-            desired_capabilities = webdriver.DesiredCapabilities.FIREFOX
+            desired_capabilities = getattr(webdriver.DesiredCapabilities,
+                                           os.environ['SAUCE_BROWSER'],
+                                           None)
+            if desired_capabilities is None:
+                raise "Browser Capabilities Not Found"
             desired_capabilities['version'] = os.environ['SAUCE_BROWSER_VERSION']
             desired_capabilities['platform'] = os.environ['SAUCE_PLATFORM']
             desired_capabilities['name'] = 'Bisect in the cloud'
