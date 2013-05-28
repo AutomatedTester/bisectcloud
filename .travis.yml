@@ -21,7 +21,7 @@ env:
 python: 
 - "2.6"
 - "2.7"
-script: ./manage.py test -s
+script: ./manage.py test
 language: python
 install: 
 - git submodule update --init --recursive
