@@ -4,6 +4,9 @@ before_script:
 - mysql -e 'create database bisectcloud;'
 - mv bisectcloud/settings/local.py-dist bisectcloud/settings/local.py
 - ./manage.py syncdb --noinput
+services:
+  - rabbitmq-server
+
 env: 
   global: 
   - DISPLAY=':99.0'
