@@ -77,7 +77,7 @@ from datetime import timedelta
 CELERYBEAT_SCHEDULE = {
     'collect-push-logs-every-15-minutes': {
             'task': 'tasks.get_pushlog',
-            'schedule': timedelta(minute=15),
+            'schedule': timedelta(seconds=900),
             'args': (16, 16)
         },
 }
