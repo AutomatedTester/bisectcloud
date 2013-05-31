@@ -17,6 +17,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     '%s.base' % PROJECT_MODULE,
     # Example code. Can (and should) be removed for actual projects.
     '%s.site' % PROJECT_MODULE,
+    'djcelery',
 ]
 
 LOCALE_PATHS = (
