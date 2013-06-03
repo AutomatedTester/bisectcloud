@@ -1,7 +1,7 @@
 from django.db import IntegrityError
 
 import requests
-from models import Pushlog, Revisions
+from models import Pushlog, Revisions, TaskMaster
 
 
 def get_pushlog():
@@ -26,3 +26,11 @@ def _store_pushlog_in_datastore(push_json):
             # errors will faill through silently.
             pass
 
+def _find_revisions(bad, good):
+    bad_rev = Revisions.objects.filter(revisions=bad)
+    good_rev = Revisions.objects.filter(revisions=good)
+
+    if len(bad_rev) == 0 or len(good_rev) == 0:
+        task_master = TaskMaster.objects.get(good=good, bad=bad)
+        task_master.current_status='task errored'
+        task_master.save()

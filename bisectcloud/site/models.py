@@ -15,6 +15,7 @@ class TaskMaster(models.Model):
     good = models.CharField(max_length=50)
     test = models.CharField(max_length=255)
     cancelled = models.BooleanField()
+    current_status = models.CharField(max_length=50)
     platform = models.ForeignKey(Platform)
     tree = models.ForeignKey(TreeInfo)
 
