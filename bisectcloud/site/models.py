@@ -20,10 +20,10 @@ class TaskMaster(models.Model):
 
 class Pushlog(models.Model):
     id = models.AutoField(primary_key=True)
-    push_id = models.CharField(max_length=10)
+    push_id = models.CharField(max_length=10, unique=True)
     branch_name = models.CharField(max_length=50)
 
 class Revisions(models.Model):
     id = models.AutoField(primary_key=True)
-    revisions = models.CharField(max_length=50)
+    revisions = models.CharField(max_length=50, unique=True)
     pushlog = models.ForeignKey(Pushlog)
