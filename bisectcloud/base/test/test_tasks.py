@@ -53,3 +53,15 @@ class TaskTests(test_utils.TestCase):
         task._find_revisions(data['hg-bad'], data['hg-good'])
         task_master = TaskMaster.objects.filter(bad=data['hg-bad'], good=data['hg-good'])[0]
         self.assertEqual('task errored', task_master.current_status)
+
+    def test_we_get_back_pushid_from_revisions(self):
+        bad_revision = '78c0e2d241ff'
+        bad_pushid = '28925'
+        good_revision = '603891a7c4b1'
+        good_pushid = '28905'
+
+        returned_good_pushid, returned_bad_pushid = \
+                task._find_revisions(bad_revision, good_revision)
+
+        self.assertEqual(good_pushid, returned_good_pushid)
+        self.assertEqual(bad_pushid, returned_bad_pushid)
