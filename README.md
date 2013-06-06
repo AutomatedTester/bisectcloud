@@ -3,6 +3,10 @@ Bisect in the cloud is a project that allows the finding of regressions by bisec
 running specific tests. More details can be found on our [Wiki][wikimo]
 [wikimo]: https://wiki.mozilla.org/Auto-tools/Projects/Bisect_in_the_cloud
 
+## Continuous Integration
+All tests are run using Travis CI. Current status is 
+[![Build Status](https://travis-ci.org/automatedtester/bisectcloud.png)](https://travis-ci.org/automatedtester/bisectcloud)
+
 ### Based on playdoh framework
 
 Mozilla's Playdoh is a web application template based on [Django][django].
