@@ -26,6 +26,16 @@ def _store_pushlog_in_datastore(push_json):
             # errors will faill through silently.
             pass
 
+def _download_builds(revision, platform, branch):
+    import subprocess
+    try:
+        subprocess.check_call(['mozdownload', '--revision=%s' % revision,
+                               '--platform=%s' % platform,
+                               '--branch=%s' % branch,
+                               '--version=tinderbox'])
+    except subprocess.CalledProcessError:
+        raise Exception("Could not find specified build")
+
 def _find_revisions(bad, good):
     try:
         bad_rev = Revisions.objects.get(revisions=bad)
