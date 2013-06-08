@@ -1,3 +1,4 @@
 -r ../vendor/src/funfactory/funfactory/requirements/prod.txt
 mozdownload
 mozinstall
+buildbot
