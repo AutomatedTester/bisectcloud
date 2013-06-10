@@ -1,13 +1,14 @@
 ========================================
-Welcome to this project's documentation!
+Welcome to Bisect In The Cloud
 ========================================
 
-This is a documentation template for a **web application based on Playdoh**.
-Feel free to change this to your liking.
+As we look to run specific tests to a revision we there are possible times that we miss catching a regression. To do
+this we need to have a mechanism that allows us to bisect builds really quickly on a number of different platforms.
 
+This will allow developers and sheriffs to find the bad revision really quickly to either fix or back out of the tree.
 
-About playdoh
--------------
+Based on playdoh
+----------------
 
 This project is based on **playdoh**. Mozilla's Playdoh is an open source
 web application template based on `Django <http://www.djangoproject.com/>`_.
